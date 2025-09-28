@@ -8,11 +8,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Connect to MongoDB (replace with your MongoDB URI)
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/yourdbname', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// Connect to MongoDB 
+const MONGO_URI = process.env.MONGO_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/yantrabhashiDB';
+console.log('Using Mongo URI:', MONGO_URI.startsWith('mongodb+srv') ? '(Atlas) ' + MONGO_URI.slice(0,60) + '...' : MONGO_URI);
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 const PORT = process.env.PORT || 4000;
 
@@ -87,21 +87,50 @@ app.post('/submit', async (req, res) => {
   }
 });
 
-// Fetch submissions route - uses query param "userId"
-app.get('/submissions', async (req, res) => {
+// // Fetch submissions route - uses query param "userId"
+// app.get('/submissions', async (req, res) => {
+//   try {
+//     const { userId } = req.query;
+//     const submissions = userId
+//       ? await Submission.find({ userId }).sort('-timestamp')
+//       : await Submission.find().sort('-timestamp');
+//     res.json(submissions);
+//   } catch (err) {
+//     res.status(500).json({ message: 'Error fetching submissions' });
+//   }
+// });
+
+app.get('/api/users', async (req, res) => {
+  const username = req.query.username;
+  if (!username)
+    return res.status(400).json({ message: 'Username required' });
   try {
-    const { userId } = req.query;
-    const submissions = userId
-      ? await Submission.find({ userId }).sort('-timestamp')
-      : await Submission.find().sort('-timestamp');
-    res.json(submissions);
+    const user = await User.findOne({ username });
+    if (!user)
+      return res.status(404).json({ message: 'User not found' });
+    res.json(user);
   } catch (err) {
-    res.status(500).json({ message: 'Error fetching submissions' });
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
+// GET /api/submissions?userId=...
+app.get('/api/submissions', async (req, res) => {
+  const userId = req.query.userId;
+  if (!userId) {
+    return res.status(400).json({ message: 'userId query param is required' });
+  }
+  try {
+    const submissions = await Submission.find({ userId });
+    res.json(submissions);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
 // Start server
 // const PORT = 4000;
-app.listen(PORT, () => {
-  console.log(`Backend server started at http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Backend server started at http://localhost:${PORT}`);
+// });
