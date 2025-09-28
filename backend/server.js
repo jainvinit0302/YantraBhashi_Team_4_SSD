@@ -8,11 +8,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Connect to MongoDB (replace with your MongoDB URI)
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/yourdbname', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// Connect to MongoDB 
+const MONGO_URI = process.env.MONGO_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/yantrabhashiDB';
+console.log('Using Mongo URI:', MONGO_URI.startsWith('mongodb+srv') ? '(Atlas) ' + MONGO_URI.slice(0,60) + '...' : MONGO_URI);
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 const PORT = process.env.PORT || 4000;
 

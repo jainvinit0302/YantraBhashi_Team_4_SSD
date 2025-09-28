@@ -8,8 +8,7 @@ import  '../../styles/components.css';
 
 
 const CompilerInterface = ({ user, onLogout }) => {
-  const [code, setCode] = useState(`# Hello World program
-PADAM message:VARTTAI = "Hello World";
+  const [code, setCode] = useState(`PADAM message:VARTTAI = "Hello World";
 CHATIMPU(message);`);
   const [output, setOutput] = useState('');
   const [isRunning, setIsRunning] = useState(false);
