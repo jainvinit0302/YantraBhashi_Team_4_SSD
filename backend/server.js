@@ -87,21 +87,50 @@ app.post('/submit', async (req, res) => {
   }
 });
 
-// Fetch submissions route - uses query param "userId"
-app.get('/submissions', async (req, res) => {
+// // Fetch submissions route - uses query param "userId"
+// app.get('/submissions', async (req, res) => {
+//   try {
+//     const { userId } = req.query;
+//     const submissions = userId
+//       ? await Submission.find({ userId }).sort('-timestamp')
+//       : await Submission.find().sort('-timestamp');
+//     res.json(submissions);
+//   } catch (err) {
+//     res.status(500).json({ message: 'Error fetching submissions' });
+//   }
+// });
+
+app.get('/api/users', async (req, res) => {
+  const username = req.query.username;
+  if (!username)
+    return res.status(400).json({ message: 'Username required' });
   try {
-    const { userId } = req.query;
-    const submissions = userId
-      ? await Submission.find({ userId }).sort('-timestamp')
-      : await Submission.find().sort('-timestamp');
-    res.json(submissions);
+    const user = await User.findOne({ username });
+    if (!user)
+      return res.status(404).json({ message: 'User not found' });
+    res.json(user);
   } catch (err) {
-    res.status(500).json({ message: 'Error fetching submissions' });
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
+// GET /api/submissions?userId=...
+app.get('/api/submissions', async (req, res) => {
+  const userId = req.query.userId;
+  if (!userId) {
+    return res.status(400).json({ message: 'userId query param is required' });
+  }
+  try {
+    const submissions = await Submission.find({ userId });
+    res.json(submissions);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
 // Start server
 // const PORT = 4000;
-app.listen(PORT, () => {
-  console.log(`Backend server started at http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Backend server started at http://localhost:${PORT}`);
+// });
