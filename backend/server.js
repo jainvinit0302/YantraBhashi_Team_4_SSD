@@ -2,15 +2,24 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+require('dotenv').config();
+
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 // Connect to MongoDB (replace with your MongoDB URI)
-mongoose.connect('mongodb://localhost:27017/yourdbname', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/yourdbname', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+  console.log(`Backend server started at http://localhost:${PORT}`);
+});
+
 
 // Define User schema and model
 const userSchema = new mongoose.Schema({
@@ -34,7 +43,6 @@ const submissionSchema = new mongoose.Schema({
 
 const Submission = mongoose.model('Submission', submissionSchema);
 
-// Signup route
 app.post('/signup', async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -46,9 +54,10 @@ app.post('/signup', async (req, res) => {
 
     res.json({ success: true, userId: user._id });
   } catch (err) {
+    console.error('Error during signup:', err);
     res.status(500).json({ message: 'Error during signup' });
   }
-});
+})
 
 // Login route
 app.post('/login', async (req, res) => {
@@ -92,7 +101,7 @@ app.get('/submissions', async (req, res) => {
 });
 
 // Start server
-const PORT = 4000;
+// const PORT = 4000;
 app.listen(PORT, () => {
   console.log(`Backend server started at http://localhost:${PORT}`);
 });
