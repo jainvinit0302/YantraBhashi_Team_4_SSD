@@ -65,22 +65,42 @@
   margin-bottom: 15px;
 }
 
+/* inputs */
 .input-field {
   width: 100%;
-  padding: 10px 14px;
+  padding: 9px 12px;
   border: 1.5px solid #eaeaea;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 1rem;
   outline: none;
   transition: border 0.2s;
   background: #f7f7fa;
   color: #29375b;
+  box-sizing: border-box;
 }
 
-.input-field:focus {
-  border-color: #0863b8;
-  background: #fff;
+.form-group {
+  margin-bottom: 10px;
 }
+
+.forgot-row {
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+/* optional input wrapper */
+.input-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* reduce vertical space */
+}
+
+.form-card {
+  width: 320px;
+  max-width: 100%;
+  padding: 28px 18px;
+}
+
 
 /* Error message */
 .error-msg {

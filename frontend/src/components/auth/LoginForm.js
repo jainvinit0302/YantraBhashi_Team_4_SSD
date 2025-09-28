@@ -82,11 +82,11 @@ const LoginForm = ({ onLogin, onSwitchToSignup }) => {
         <div className="form-footer">
           Not a member? <button className="footer-link" onClick={onSwitchToSignup}>Signup now</button>
         </div>
-        <div className="demo-cred">
+        {/* <div className="demo-cred">
           <p className="demo-label">Demo Credentials:</p>
           <p className="demo-text">Admin: {DEMO_CREDENTIALS.admin.username} / {DEMO_CREDENTIALS.admin.password}</p>
           <p className="demo-text">Student: {DEMO_CREDENTIALS.student.username} / {DEMO_CREDENTIALS.student.password}</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );
