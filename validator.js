@@ -1,5 +1,4 @@
-// validator.js (patched)
-// YantraBhasha single-file validator compatible with app.js
+
 (function (global) {
   // Expose as global YantraBhashaValidator
   class YantraBhashaValidator {
@@ -9,19 +8,15 @@
 
     // Primary entry: validate(sourceCodeString)
     validate(code) {
-      // Prepare
       this.scopeStack = [new Map()];
       this.bracketStack = [];
       this.errors = [];
       this.warnings = [];
       this.console = [];
 
-      // Split by lines and keep original line numbers
       const rawLines = code.replace(/\r\n/g, "\n").split("\n");
-      // keep lines but replace tabs with spaces
       const lines = rawLines.map(l => l.replace(/\t/g, '    '));
 
-      // iterate each line
       for (let i = 0; i < lines.length; i++) {
         const raw = lines[i];
         const trimmed = raw.trim();

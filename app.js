@@ -1,7 +1,5 @@
-// app.js (replace your existing file)
 const validator = new YantraBhashaValidator();
 
-// UI helpers (same names as your app)
 function toggleExamples() {
   const menu = document.getElementById('examplesMenu');
   menu.classList.toggle('show');
@@ -148,7 +146,6 @@ function renderConsole(consoleMsgs) {
   });
 }
 
-// runInterpreterCapture: captures console.log & console.error separately
 function runInterpreterCapture(programString, inputs = []) {
   const originalLog = console.log;
   const originalError = console.error;
@@ -175,7 +172,6 @@ function runInterpreterCapture(programString, inputs = []) {
   return captured;
 }
 
-// find all CHEPPU occurrences to prompt user for inputs (in order)
 function gatherInputsForProgram(programString) {
   const lines = programString.replace(/\r\n/g, '\n').split('\n');
   const prompts = [];
@@ -186,7 +182,6 @@ function gatherInputsForProgram(programString) {
       prompts.push({ line: i + 1, varName: m[1] });
     }
   }
-  // Ask user for values sequentially
   const inputs = [];
   for (const p of prompts) {
     const answer = window.prompt(`Input for variable '${p.varName}' (line ${p.line}):`);
@@ -195,7 +190,6 @@ function gatherInputsForProgram(programString) {
   return inputs;
 }
 
-// ---------- Run button handler ----------
 function runCode() {
   const codeEditor = document.getElementById('codeEditor');
   const code = codeEditor.value;
@@ -209,10 +203,8 @@ function runCode() {
     return;
   }
 
-  // Run validation
   const result = validate(code);
 
-  // Show validation results and variables immediately
   renderValidationResults(result.errors, result.warnings);
   // <<< FIXED: use validator's variables directly (triples [name,type,value]) >>>
   renderVariables(result.variables);
