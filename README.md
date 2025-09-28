@@ -1,5 +1,7 @@
 # YantraBhashi Compiler
 
+## NOTE: A technical issue with the original repository prevents us from pushing to the main branch. Due to strict time constraints, we determined the most efficient path was to create a new Git repository for this project rather than spending time debugging the problem. Links for both the original and new repositories are provided below.
+
 A web-based compiler and interpreter for YantraBhashi, a custom programming language with Telugu-inspired keywords. Built using the MERN stack with comprehensive syntax validation, semantic analysis, and real-time code execution capabilities.
 
 ## Table of Contents
@@ -282,74 +284,6 @@ CHATIMPU(message);
 CHATIMPU(total);
 ```
 
-## Design Decisions
-
-### Architecture Choices
-
-#### 1. MERN Stack Selection
-**Decision**: Use MongoDB, Express.js, React.js, and Node.js
-**Rationale**: 
-- **JavaScript Ecosystem**: Single language across full stack reduces complexity
-- **Rapid Development**: Rich ecosystem enables faster development cycles
-- **Scalability**: Each component scales independently
-- **Community Support**: Extensive documentation and community resources
-
-#### 2. Client-Side Validation and Execution
-**Decision**: Implement both validator and interpreter on the frontend
-**Rationale**:
-- **Real-time Feedback**: Immediate syntax error detection without server roundtrips
-- **Reduced Server Load**: Computational work distributed to client
-- **Offline Capability**: Basic functionality works without internet connection
-- **Better UX**: Instantaneous response to user input
-
-#### 3. Dual Validation System
-**Decision**: Implement validation both on client and server
-**Rationale**:
-- **Security**: Server-side validation prevents malicious code execution
-- **Performance**: Client-side validation provides immediate feedback
-- **Reliability**: Redundancy ensures code quality
-- **User Experience**: Best of both worlds approach
-
-### Language Design Choices
-
-#### 1. Telugu-Inspired Keywords
-**Decision**: Use Telugu-derived keywords instead of English
-**Rationale**:
-- **Cultural Relevance**: Makes programming more accessible to Telugu speakers
-- **Educational Value**: Reduces language barrier in programming education
-- **Unique Identity**: Differentiates from existing programming languages
-
-#### 2. Strong Type System
-**Decision**: Implement strict type checking with only two basic types
-**Rationale**:
-- **Simplicity**: Easy to understand for beginners
-- **Error Prevention**: Catches type-related errors at compile time
-- **Educational Focus**: Teaches type safety concepts
-- **Performance**: Simpler type system enables faster execution
-
-#### 3. Explicit Scope Management
-**Decision**: Implement block-scoped variables with explicit scope tracking
-**Rationale**:
-- **Predictability**: Clear variable lifetime and accessibility rules
-- **Educational Value**: Teaches scope concepts explicitly
-- **Error Prevention**: Prevents common scope-related errors
-- **Memory Management**: Enables proper cleanup of variables
-
-### Implementation Decisions
-
-#### 1. Comprehensive Error Reporting
-**Decision**: Implement detailed error messages with line numbers and context
-**Rationale**:
-- **Learning Aid**: Helps users understand and fix errors
-- **Developer Experience**: Reduces debugging time
-- **Educational Value**: Teaches proper error handling
-- **Professional Standard**: Matches expectations from modern IDEs
-
-#### 2. Real-time vs. Efficiency
-- **Trade-off**: Real-time validation vs. computational efficiency
-- **Decision**: Optimize for real-time feedback
-- **Impact**: Higher client-side computational load but better UX
-
 ## API Documentation
 
 ### Authentication Endpoints
@@ -409,11 +343,6 @@ Authenticate user and receive JWT token.
 #### POST /api/code/submit
 Submit code for validation and execution.
 
-**Headers:**
-```
-Authorization: Bearer jwt_token_here
-Content-Type: application/json
-```
 
 **Request Body:**
 ```json
@@ -440,11 +369,6 @@ Content-Type: application/json
 #### GET /api/code/submissions
 Get user's code submission history.
 
-**Headers:**
-```
-Authorization: Bearer jwt_token_here
-```
-
 **Response:**
 ```json
 {
@@ -463,13 +387,6 @@ Authorization: Bearer jwt_token_here
 
 ### User Management Endpoints
 
-#### GET /api/users/profile
-Get current user profile information.
-
-**Headers:**
-```
-Authorization: Bearer jwt_token_here
-```
 
 **Response:**
 ```json
@@ -526,20 +443,3 @@ cd frontend && npm run build
 # Start production server
 cd backend && npm run start:prod
 ```
-
-## License
-
-This project is licensed under the IIIT License. See the [LICENSE](LICENSE) file for details.
-
-## Support
-
-For questions, issues, or contributions:
-- **Issues**: [GitHub Issues](https://github.com/your-username/yantrabhashi-compiler/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/yantrabhashi-compiler/discussions)
-- **Email**: your-email@domain.com
-
-## Acknowledgments
-
-- MongoDB team for the excellent database system
-- React team for the powerful UI framework
-- Telugu language community for inspiration
