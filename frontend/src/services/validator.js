@@ -1,9 +1,9 @@
+// YantraBhashiValidator object is called in comilerInterface.js
 class YantraBhashiValidator {
   constructor() {
     this.variables = new Map();
     this.errors = [];
     this.reservedWords = [
-      // Add your reserved words here if any
     ];
     this.DATA_TYPES = ['ANKHE', 'VARTTAI'];
     this.scopeStack = [new Map()];
