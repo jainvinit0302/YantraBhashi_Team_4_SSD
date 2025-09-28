@@ -26,7 +26,7 @@ YantraBhashi is a custom programming language that uses Telugu-inspired keywords
 - **Interpreter**: Runtime execution engine with scope management
 - **Database**: MongoDB for user management and code storage
 
-## Architecture
+## Architecture (Solution Diagram)
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -165,67 +165,67 @@ MongoDB collections will be automatically created when the application runs. The
 ## Project Structure
 
 ```
-yantrabhashi-compiler/
-├── backend/
-│   ├── config/
-│   │   ├── database.js          # MongoDB connection
-│   │   └── auth.js              # Authentication config
-│   ├── controllers/
-│   │   ├── authController.js    # Authentication logic
-│   │   ├── userController.js    # User management
-│   │   └── codeController.js    # Code execution logic
-│   ├── middleware/
-│   │   ├── auth.js              # JWT verification
-│   │   └── validation.js        # Input validation
-│   ├── models/
-│   │   ├── User.js              # User schema
-│   │   └── Submission.js        # Code submission schema
-│   ├── routes/
-│   │   ├── auth.js              # Authentication routes
-│   │   ├── users.js             # User routes
-│   │   └── code.js              # Code execution routes
-│   ├── services/
-│   │   ├── validator.js         # YantraBhashi validator
-│   │   └── interpreter.js       # YantraBhashi interpreter
-│   ├── utils/
-│   │   ├── logger.js            # Logging utility
-│   │   └── responses.js         # API response helpers
-│   ├── .env                     # Environment variables
-│   ├── package.json
-│   └── server.js                # Main server file
-├── frontend/
-│   ├── public/
-│   │   ├── index.html
-│   │   └── favicon.ico
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── auth/
-│   │   │   │   ├── Login.js
-│   │   │   │   └── Register.js
-│   │   │   ├── compiler/
-│   │   │   │   ├── CompilerInterface.js
-│   │   │   │   ├── CodeEditor.js
-│   │   │   │   └── OutputPanel.js
-│   │   │   └── common/
-│   │   │       ├── Header.js
-│   │   │       └── Sidebar.js
-│   │   ├── services/
-│   │   │   ├── api.js           # API service
-│   │   │   ├── auth.js          # Authentication service
-│   │   │   ├── validator.js     # Client-side validator
-│   │   │   └── interpreter.js   # Client-side interpreter
-│   │   ├── styles/
-│   │   │   ├── components.css   # Component styles
-│   │   │   └── globals.css      # Global styles
-│   │   ├── utils/
-│   │   │   ├── constants.js     # Application constants
-│   │   │   └── helpers.js       # Utility functions
-│   │   ├── App.js               # Main application component
-│   │   └── index.js             # Application entry point
-│   ├── .env                     # Frontend environment variables
-│   └── package.json
-├── README.md
-└── package.json                 # Root package.json for scripts
+Directory structure:
+└── YantraBhashi_Team_4_SSD/
+    ├── README.md
+    ├── backend/
+    │   ├── middleware/
+    │   │   └── auth.js
+    │   ├── models/
+    │   │   ├── Submission.js
+    │   │   └── User.js
+    │   ├── package-lock.json
+    │   ├── package.json
+    │   ├── routes/
+    │   │   ├── auth.js
+    │   │   └── submissions.js
+    │   └── server.js
+    ├── frontend/
+    │   ├── README.md
+    │   ├── package-lock.json
+    │   ├── package.json
+    │   ├── public/
+    │   │   ├── favicon.ico
+    │   │   ├── index.html
+    │   │   ├── logo192.png
+    │   │   ├── logo512.png
+    │   │   ├── manifest.json
+    │   │   └── robots.txt
+    │   └── src/
+    │       ├── App.css
+    │       ├── App.js.js
+    │       ├── App.test.js
+    │       ├── components/
+    │       │   ├── auth/
+    │       │   │   ├── LoginForm.js
+    │       │   │   └── SignupForm.js
+    │       │   ├── common/
+    │       │   │   └── Header.js
+    │       │   ├── compiler/
+    │       │   │   ├── CodeEditor.js
+    │       │   │   ├── CompilerInterface.js
+    │       │   │   └── OutputPanel.js
+    │       │   └── dashboard/
+    │       │       ├── Analytics.js
+    │       │       ├── Header.js
+    │       │       ├── InstructorDashboard.js
+    │       │       ├── SubmissionDetails.js
+    │       │       └── SubmissionsList.js
+    │       ├── index.css
+    │       ├── index.js.js
+    │       ├── logo.svg
+    │       ├── reportWebVitals.js
+    │       ├── services/
+    │       │   ├── interpretor.js
+    │       │   ├── mockAPI.js
+    │       │   └── validator.js
+    │       ├── setupTests.js
+    │       ├── styles/
+    │       │   └── components.css
+    │       └── utils/
+    │           └── constants.js
+    ├── package-lock.json
+    └── package.json
 ```
 
 ## Language Specification
